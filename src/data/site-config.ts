@@ -1,8 +1,23 @@
+const getSiteUrl = (): string => {
+  const envUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (envUrl) {
+    try {
+      const urlWithProtocol = /^https?:\/\//i.test(envUrl)
+        ? envUrl
+        : `https://${envUrl}`;
+      return new URL(urlWithProtocol).toString().replace(/\/$/, "");
+    } catch {
+      // Fallback if envUrl is invalid
+    }
+  }
+  return "http://localhost:3000";
+};
+
 export const siteConfig = {
   name: "Om Prakash Jewellers",
   shortName: "OPJ",
   tagline: "Crafted to be remembered",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  url: getSiteUrl(),
   phone: "+91 98765 43210",
   phoneHref: "+919876543210",
   whatsappNumber: process.env.WHATSAPP_NUMBER ?? "919876543210",

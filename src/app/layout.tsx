@@ -32,8 +32,16 @@ export const viewport: Viewport = {
   ],
 };
 
+const getMetadataBase = (): URL => {
+  try {
+    return new URL(siteConfig.url);
+  } catch {
+    return new URL("http://localhost:3000");
+  }
+};
+
 export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.url),
+  metadataBase: getMetadataBase(),
   title: {
     default: `${siteConfig.name} — Timeless Gold & Diamond Jewellery`,
     template: `%s — ${siteConfig.name}`,
