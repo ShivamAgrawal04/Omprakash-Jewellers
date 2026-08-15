@@ -8,7 +8,7 @@ import {
   useRef,
   useState,
 } from "react"
-import { Check, Copy, Heart, Info, TriangleAlert, X } from "lucide-react"
+import { Check, Copy, Info, TriangleAlert, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 type ToastKind = "success" | "error" | "info" | "copy"
@@ -62,8 +62,9 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
   )
 
   useEffect(() => {
+    const timersToClear = timers.current
     return () => {
-      for (const timer of timers.current.values()) clearTimeout(timer)
+      for (const timer of timersToClear.values()) clearTimeout(timer)
     }
   }, [])
 

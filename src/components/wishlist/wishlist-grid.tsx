@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useSyncExternalStore } from "react"
 import Link from "next/link"
 import { Heart } from "lucide-react"
 import { useWishlist } from "@/components/providers/wishlist-provider"
@@ -11,9 +11,11 @@ import { Skeleton } from "@/components/ui/skeleton"
 
 export function WishlistGrid() {
   const { ids, clear } = useWishlist()
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => setMounted(true), [])
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  )
 
   if (!mounted) {
     return (

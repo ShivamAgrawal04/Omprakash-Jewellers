@@ -45,7 +45,7 @@ export default function StoryPage() {
                     <h2 className="font-display text-2xl font-medium tracking-tight">
                       {chapter.heading}
                     </h2>
-                    <div className="mt-4 aspect-[4/3] overflow-hidden rounded-sm bg-muted">
+                    <div className="relative mt-4 aspect-[4/3] overflow-hidden rounded-sm bg-muted">
                       <SmartImage
                         src={chapter.image}
                         alt={chapter.imageAlt}

@@ -176,13 +176,12 @@ export default function HomePage() {
       {/* Editorial split */}
       <section className="container-lux grid items-center gap-10 py-20 md:py-28 lg:grid-cols-2 lg:gap-16">
         <Reveal>
-          <div className="relative overflow-hidden rounded-sm bg-muted">
+          <div className="relative aspect-square overflow-hidden rounded-sm bg-muted">
             <SmartImage
               src={unsplash(photo.flatlay, 1200, 1200)}
               alt="Jewellery design sketches and gold on the workbench"
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"
-              className="aspect-square object-cover"
             />
           </div>
         </Reveal>
@@ -352,13 +351,12 @@ export default function HomePage() {
               </Reveal>
             </div>
             <Reveal delay={100}>
-              <div className="relative overflow-hidden rounded-sm bg-muted">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-sm bg-muted">
                 <SmartImage
                   src={unsplash(photo.necklace1, 1200, 1200)}
                   alt="Inside the Om Prakash Jewellers showroom"
                   fill
                   sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="aspect-[4/3] object-cover"
                 />
               </div>
             </Reveal>

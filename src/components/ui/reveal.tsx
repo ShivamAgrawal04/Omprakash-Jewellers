@@ -18,10 +18,9 @@ export function Reveal({ children, className, delay = 0, as = "div" }: RevealPro
     const node = ref.current
     if (!node) return
 
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    if (reduced) {
-      setVisible(true)
-      return
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      const id = requestAnimationFrame(() => setVisible(true))
+      return () => cancelAnimationFrame(id)
     }
 
     const observer = new IntersectionObserver(

@@ -15,7 +15,6 @@ interface Bucket {
 const buckets = new Map<string, Bucket>();
 
 const WINDOW_MS = 60_000;
-const MAX = 1_000;
 const CLEANUP_EVERY = 1_000;
 
 let checks = 0;

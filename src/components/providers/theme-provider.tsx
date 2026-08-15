@@ -39,17 +39,20 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    const initial = getInitialTheme()
-    setThemeState(initial)
-    applyTheme(initial)
-    setResolvedTheme(
-      initial === "system"
-        ? window.matchMedia("(prefers-color-scheme: dark)").matches
-          ? "dark"
-          : "light"
-        : initial,
-    )
-    setMounted(true)
+    const id = requestAnimationFrame(() => {
+      const initial = getInitialTheme()
+      setThemeState(initial)
+      applyTheme(initial)
+      setResolvedTheme(
+        initial === "system"
+          ? window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light"
+          : initial,
+      )
+      setMounted(true)
+    })
+    return () => cancelAnimationFrame(id)
   }, [])
 
   useEffect(() => {

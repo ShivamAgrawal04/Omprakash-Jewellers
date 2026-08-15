@@ -13,12 +13,16 @@ export function CollectionCard({ collection, large }: CollectionCardProps) {
   return (
     <Link
       href={`/collections/${collection.slug}`}
-      className="group block focus-visible:outline-2 focus-visible:outline-ring"
+      className={`group block focus-visible:outline-2 focus-visible:outline-ring ${large ? "lg:h-full" : ""}`}
       aria-label={`Explore ${collection.name}`}
     >
-      <div className="relative overflow-hidden rounded-sm bg-muted">
+      <div className={`relative overflow-hidden rounded-sm bg-muted ${large ? "lg:h-full" : ""}`}>
         <div
-          className={large ? "aspect-[4/3] sm:aspect-[16/10]" : "aspect-[4/5]"}
+          className={
+            large
+              ? "aspect-[4/3] sm:aspect-[16/10] lg:aspect-auto lg:h-full"
+              : "aspect-[4/5]"
+          }
         >
           <SmartImage
             src={collection.image}

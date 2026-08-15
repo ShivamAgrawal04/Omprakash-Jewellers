@@ -35,7 +35,6 @@ export function cleanText(value: string, max = 2000): string {
 
 /** Removes control characters and script-like content from free text. */
 export function sanitizeText(value: string, max = 2000): string {
-  // eslint-disable-next-line no-control-regex
   const cleaned = value.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, "");
   return cleaned.trim().slice(0, max);
 }

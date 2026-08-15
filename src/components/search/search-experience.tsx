@@ -48,17 +48,18 @@ export function SearchExperience() {
   useEffect(() => {
     const q = query.trim()
     if (!q) {
-      setResponse(null)
-      setLoading(false)
-      setError(false)
-      return
+      const id = requestAnimationFrame(() => {
+        setResponse(null)
+        setLoading(false)
+        setError(false)
+      })
+      return () => cancelAnimationFrame(id)
     }
-
-    setLoading(true)
-    setError(false)
 
     if (timerRef.current) clearTimeout(timerRef.current)
     timerRef.current = setTimeout(async () => {
+      setLoading(true)
+      setError(false)
       const requestId = ++requestIdRef.current
       try {
         const res = await fetch(`/api/search?q=${encodeURIComponent(q)}`)

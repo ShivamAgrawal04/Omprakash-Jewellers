@@ -41,7 +41,8 @@ export function WishlistProvider({ children }: { children: React.ReactNode }) {
   const [ids, setIds] = useState<string[]>([])
 
   useEffect(() => {
-    setIds(readStoredIds())
+    const id = requestAnimationFrame(() => setIds(readStoredIds()))
+    return () => cancelAnimationFrame(id)
   }, [])
 
   const isWishlisted = useCallback((id: string) => ids.includes(id), [ids])

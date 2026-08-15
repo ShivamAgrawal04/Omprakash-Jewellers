@@ -6,7 +6,6 @@ import {
   hasActiveFilters,
 } from "@/lib/filter-url"
 import { pageMetadata } from "@/lib/seo"
-import { Breadcrumb } from "@/components/ui/breadcrumb"
 import { PageHero } from "@/components/layout/page-hero"
 import { FilterPanel } from "@/components/products/filter-panel"
 import { MobileFilterSheet } from "@/components/products/mobile-filter-sheet"
