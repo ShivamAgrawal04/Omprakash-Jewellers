@@ -32,24 +32,27 @@ function SheetContent({
   ...props
 }: DrawerPrimitive.Content.Props & { showCloseButton?: boolean }) {
   return (
-    <DrawerPrimitive.Content
-      data-slot="sheet-content"
-      className={cn(
-        "fixed inset-x-0 bottom-0 z-50 mx-auto flex max-h-[88dvh] w-full max-w-2xl flex-col rounded-t-xl border border-border border-b-0 bg-background p-6 shadow-2xl shadow-obsidian/15 outline-none data-[ending-style]:slide-out-to-bottom data-[starting-style]:slide-in-from-bottom sm:p-8",
-        className
-      )}
-      {...props}
-    >
-      {children}
-      {showCloseButton ? (
-        <DrawerPrimitive.Close
-          aria-label="Close"
-          className="absolute right-4 top-4 flex size-9 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-2 focus-visible:outline-ring"
-        >
-          <X className="size-4" />
-        </DrawerPrimitive.Close>
-      ) : null}
-    </DrawerPrimitive.Content>
+    <DrawerPrimitive.Portal>
+      <SheetOverlay />
+      <DrawerPrimitive.Content
+        data-slot="sheet-content"
+        className={cn(
+          "fixed inset-x-0 bottom-0 z-50 mx-auto flex max-h-[88dvh] w-full max-w-2xl flex-col rounded-t-xl border border-border border-b-0 bg-background p-6 shadow-2xl shadow-obsidian/15 outline-none data-[ending-style]:slide-out-to-bottom data-[starting-style]:slide-in-from-bottom sm:p-8",
+          className
+        )}
+        {...props}
+      >
+        {children}
+        {showCloseButton ? (
+          <DrawerPrimitive.Close
+            aria-label="Close"
+            className="absolute right-4 top-4 flex size-9 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-2 focus-visible:outline-ring"
+          >
+            <X className="size-4" />
+          </DrawerPrimitive.Close>
+        ) : null}
+      </DrawerPrimitive.Content>
+    </DrawerPrimitive.Portal>
   )
 }
 

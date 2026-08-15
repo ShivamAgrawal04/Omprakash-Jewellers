@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { Suspense } from "react"
 import { pageMetadata } from "@/lib/seo"
 import { PageHero } from "@/components/layout/page-hero"
 import { SearchExperience } from "@/components/search/search-experience"
@@ -20,7 +21,9 @@ export default function SearchPage() {
         crumbs={[{ label: "Home", href: "/" }, { label: "Search" }]}
       />
       <section className="container-lux py-10 md:py-16">
-        <SearchExperience />
+        <Suspense fallback={null}>
+          <SearchExperience />
+        </Suspense>
       </section>
     </>
   )
