@@ -1,26 +1,271 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
+
+/* ---------------------------------------------------------------------------
+   Luxury jewellery brand — design tokens
+   Light mode: warm ivory, pearl, champagne, soft gold, deep charcoal
+   Dark mode:  obsidian, charcoal, soft gold, champagne, ivory
+--------------------------------------------------------------------------- */
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-champagne: var(--champagne);
+  --color-ivory: var(--ivory);
+  --color-pearl: var(--pearl);
+  --color-charcoal: var(--charcoal);
+  --color-obsidian: var(--obsidian);
+  --color-muted-brown: var(--muted-brown);
+  --color-muted-grey: var(--muted-grey);
+
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-geist-mono);
+
+  --radius: 0.375rem;
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+
+  --container-lux: 84rem;
+
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-fade-in: fade-in 0.6s ease-out both;
+  --animate-zoom-slow: zoom-slow 18s ease-in-out infinite alternate;
+  --animate-shimmer: shimmer 1.8s linear infinite;
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(1.5rem); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes zoom-slow {
+    from { transform: scale(1); }
+    to { transform: scale(1.08); }
+  }
+  @keyframes shimmer {
+    from { background-position: -200% 0; }
+    to { background-position: 200% 0; }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+:root {
+  --background: #faf8f3;
+  --foreground: #171717;
+  --card: #ffffff;
+  --card-foreground: #171717;
+  --popover: #ffffff;
+  --popover-foreground: #171717;
+  --primary: #b8944e;
+  --primary-foreground: #ffffff;
+  --secondary: #f5f2ea;
+  --secondary-foreground: #171717;
+  --muted: #f5f2ea;
+  --muted-foreground: #6f6252;
+  --accent: #f5f2ea;
+  --accent-foreground: #171717;
+  --destructive: #b42318;
+  --border: #e7e1d5;
+  --input: #ddd5c6;
+  --ring: #b8944e;
+
+  --gold: #b8944e;
+  --gold-soft: #d6b56c;
+  --champagne: #d6b56c;
+  --ivory: #faf8f3;
+  --pearl: #f5f2ea;
+  --charcoal: #171717;
+  --obsidian: #0d0d0d;
+  --muted-brown: #6f6252;
+  --muted-grey: #9a9184;
+}
+
+.dark {
+  --background: #0d0d0d;
+  --foreground: #f4efe5;
+  --card: #151515;
+  --card-foreground: #f4efe5;
+  --popover: #151515;
+  --popover-foreground: #f4efe5;
+  --primary: #c9a45c;
+  --primary-foreground: #0d0d0d;
+  --secondary: #1c1c1c;
+  --secondary-foreground: #f4efe5;
+  --muted: #1c1c1c;
+  --muted-foreground: #aaa49a;
+  --accent: #1c1c1c;
+  --accent-foreground: #f4efe5;
+  --destructive: #e5484d;
+  --border: #2a2a2a;
+  --input: #333333;
+  --ring: #c9a45c;
+
+  --gold: #c9a45c;
+  --gold-soft: #e2c98a;
+  --champagne: #e2c98a;
+  --ivory: #f4efe5;
+  --pearl: #1c1c1c;
+  --charcoal: #151515;
+  --obsidian: #0d0d0d;
+  --muted-brown: #b0a898;
+  --muted-grey: #aaa49a;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--gold);
+    color: var(--background);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  img {
+    user-select: none;
+  }
+}
+
+@layer utilities {
+  .container-lux {
+    margin-inline: auto;
+    width: 100%;
+    max-width: var(--container-lux);
+    padding-inline: 1.25rem;
+  }
+
+  @media (min-width: 640px) {
+    .container-lux {
+      padding-inline: 2rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container-lux {
+      padding-inline: 3rem;
+    }
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  .skeleton {
+    @apply relative overflow-hidden bg-muted;
+  }
+
+  .skeleton::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in oklab, var(--foreground) 6%, transparent),
+      transparent
+    );
+    animation: shimmer 1.8s linear infinite;
+  }
+
+  .hairline {
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      var(--border),
+      transparent
+    );
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold tracking-[0.22em] uppercase;
+    letter-spacing: 0.22em;
+  }
+
+  .gold-gradient-text {
+    background: linear-gradient(
+      100deg,
+      var(--gold-soft),
+      var(--gold) 45%,
+      var(--gold-soft)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+/* Thin, luxury scrollbar */
+@media (pointer: fine) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in oklab, var(--gold) 45%, transparent) transparent;
+  }
+}
+
+/* Hide horizontal scrollbars on scroll-snap rails */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

@@ -1,0 +1,78 @@
+import type { Dictionary } from "./types";
+
+export const en: Dictionary = {
+  nav: {
+    collections: "Collections",
+    jewellery: "Jewellery",
+    bridal: "Bridal",
+    newArrivals: "New Arrivals",
+    ourStory: "Our Story",
+    craftsmanship: "Craftsmanship",
+    gallery: "Gallery",
+    visitUs: "Visit Us",
+    contact: "Contact",
+    search: "Search",
+    wishlist: "Wishlist",
+    menu: "Menu",
+    close: "Close",
+    explore: "Explore",
+  },
+  common: {
+    explore: "Explore",
+    viewDetails: "View Details",
+    enquireNow: "Enquire Now",
+    priceOnRequest: "Price on Request",
+    addToWishlist: "Add to Wishlist",
+    removeFromWishlist: "Remove from Wishlist",
+    share: "Share",
+    backToHome: "Return Home",
+    loading: "Loading",
+    retry: "Retry",
+    somethingWentWrong: "Something went wrong.",
+    pleaseTryAgain: "Please try again.",
+    showMore: "Show more",
+    showLess: "Show less",
+  },
+  search: {
+    placeholder: "Search jewellery, collections, styles…",
+    results: "results",
+    noResults: "No jewellery found.",
+    noResultsHint: "Try another search or explore our collections.",
+    empty: "Search our jewellery collection",
+    emptyHint:
+      "Search by name, category, collection, metal, stone or product code.",
+  },
+  wishlist: {
+    title: "Wishlist",
+    emptyTitle: "Your wishlist is empty.",
+    emptyBody:
+      "Save jewellery you love and find it here later. Your pieces are kept on this device.",
+    added: "Added to wishlist",
+    removed: "Removed from wishlist",
+  },
+  footer: {
+    explore: "Explore",
+    about: "About",
+    visit: "Visit",
+    policies: "Policies",
+    follow: "Follow",
+    rights: "All rights reserved.",
+  },
+  enquiry: {
+    title: "Enquire About This Piece",
+    subtitle:
+      "Share your details and our jewellery specialist will contact you shortly.",
+    name: "Full Name",
+    phone: "Phone Number",
+    email: "Email",
+    contactMethod: "Preferred Contact Method",
+    preferredDate: "Preferred Visit Date",
+    message: "Message",
+    send: "Send Enquiry",
+    sending: "Sending…",
+    successTitle: "Thank you.",
+    successBody:
+      "Your enquiry has been received. Our jewellery specialist will contact you shortly.",
+    whatsapp: "Ask about this piece on WhatsApp",
+  },
+};
