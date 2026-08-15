@@ -6,7 +6,6 @@ import { Dialog } from "@base-ui/react/dialog"
 import { Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionPanel } from "@/components/ui/accordion"
 import { mainNav } from "@/data/navigation"
 import { siteConfig } from "@/data/site-config"
-import { cn } from "@/lib/utils"
 
 export function MobileNav({ open, onClose }: { open: boolean; onClose: () => void }) {
   return (

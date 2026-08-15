@@ -12,14 +12,19 @@ import { cn } from "@/lib/utils"
 
 interface ProductGalleryProps {
   images: ProductImage[]
-  productName: string
 }
 
-export function ProductGallery({ images, productName }: ProductGalleryProps) {
+export function ProductGallery({ images }: ProductGalleryProps) {
   const [selected, setSelected] = useState(0)
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [zoomed, setZoomed] = useState(false)
   const railRef = useRef<HTMLDivElement | null>(null)
+
+  const [prevLightbox, setPrevLightbox] = useState(lightboxOpen)
+  if (lightboxOpen !== prevLightbox) {
+    setPrevLightbox(lightboxOpen)
+    if (!lightboxOpen) setZoomed(false)
+  }
 
   const count = images.length
 
@@ -40,10 +45,6 @@ export function ProductGallery({ images, productName }: ProductGalleryProps) {
     window.addEventListener("keydown", onKey)
     return () => window.removeEventListener("keydown", onKey)
   }, [lightboxOpen, selected, goTo])
-
-  useEffect(() => {
-    if (!lightboxOpen) setZoomed(false)
-  }, [lightboxOpen])
 
   const current = images[selected] ?? images[0]
 

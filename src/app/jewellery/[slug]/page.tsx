@@ -84,7 +84,7 @@ export default async function ProductDetailPage({
         <Breadcrumb items={crumbs} className="mb-8" />
 
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
-          <ProductGallery images={product.images} productName={product.name} />
+          <ProductGallery images={product.images} />
 
           <div className="flex flex-col gap-6">
             <div className="flex flex-wrap items-center gap-3">

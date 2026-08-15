@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { useEffect, useState } from "react"
+import { useEffect, useSyncExternalStore, useState } from "react"
 import { Gem, Heart, Moon, Search, Sun } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { mainNav } from "@/data/navigation"
@@ -14,9 +14,11 @@ import { MobileNav } from "@/components/layout/mobile-nav"
 
 function ThemeToggle({ className }: { className?: string }) {
   const { resolvedTheme, setTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => setMounted(true), [])
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  )
 
   const toggle = () => setTheme(resolvedTheme === "dark" ? "light" : "dark")
 
@@ -58,8 +60,11 @@ function SearchLink({ className }: { className?: string }) {
 
 function WishlistLink({ className }: { className?: string }) {
   const { count } = useWishlist()
-  const [mounted, setMounted] = useState(false)
-  useEffect(() => setMounted(true), [])
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  )
 
   return (
     <Link
@@ -94,9 +99,11 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
-  useEffect(() => {
+  const [prevPathname, setPrevPathname] = useState(pathname)
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname)
     setMobileOpen(false)
-  }, [pathname])
+  }
 
   return (
     <header

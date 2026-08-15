@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { SlidersHorizontal } from "lucide-react"
 import { usePathname, useSearchParams } from "next/navigation"
 import {
@@ -12,7 +12,6 @@ import {
 } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
 import { FilterPanel } from "@/components/products/filter-panel"
-import { parseSearchParams } from "@/lib/filter-url"
 import type { ActiveFilters } from "@/lib/filter-url"
 
 interface MobileFilterSheetProps {
@@ -24,10 +23,13 @@ export function MobileFilterSheet({ current, resultCount }: MobileFilterSheetPro
   const [open, setOpen] = useState(false)
   const pathname = usePathname()
   const searchParams = useSearchParams()
+  const currentParams = `${pathname}${searchParams.toString()}`
+  const [prevParams, setPrevParams] = useState(currentParams)
 
-  useEffect(() => {
+  if (currentParams !== prevParams) {
+    setPrevParams(currentParams)
     setOpen(false)
-  }, [pathname, searchParams])
+  }
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
