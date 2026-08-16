@@ -164,7 +164,7 @@ export default async function ProductDetailPage({
                   <span className="font-semibold text-foreground">
                     {siteConfig.address.line1}, {siteConfig.address.city}.
                   </span>{" "}
-                  <Link href="/visit" className="text-primary underline underline-offset-4 hover:text-primary/80">
+                  <Link href="/contact" className="text-primary underline underline-offset-4 hover:text-primary/80">
                     Get directions
                   </Link>
                 </span>

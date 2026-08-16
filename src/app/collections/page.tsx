@@ -7,7 +7,7 @@ import { CollectionCard } from "@/components/collections/collection-card"
 export const metadata: Metadata = pageMetadata({
   title: "Collections",
   description:
-    "Explore our gold, diamond, bridal, rings, necklaces, earrings, bangles and men's jewellery collections — handcrafted in Jaipur.",
+    "Gold, silver, wedding, custom and everyday jewellery from our shop in Porsa.",
   path: "/collections",
 })
 
@@ -21,7 +21,7 @@ export default function CollectionsPage() {
       <PageHero
         eyebrow="The Collections"
         title="Collections"
-        description="Eight signatures, one standard — jewellery designed, sampled and finished in our Jaipur workshop."
+        description="What we keep and what we make — gold, silver, wedding sets and custom work."
         crumbs={[{ label: "Home", href: "/" }, { label: "Collections" }]}
       />
 

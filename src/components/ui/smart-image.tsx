@@ -34,7 +34,7 @@ export function SmartImage({
   const [currentSrc, setCurrentSrc] = useState(src)
   const [errored, setErrored] = useState(false)
 
-  return (
+  const image = (
     <Image
       src={currentSrc}
       alt={alt}
@@ -56,4 +56,17 @@ export function SmartImage({
       )}
     />
   )
+
+  if (fill) {
+    return (
+      <span
+        className="block size-full"
+        style={{ position: "relative", display: "block", width: "100%", height: "100%" }}
+      >
+        {image}
+      </span>
+    )
+  }
+
+  return image
 }

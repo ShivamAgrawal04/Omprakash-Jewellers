@@ -89,6 +89,6 @@ export const values: Value[] = [
   },
   {
     title: "A local home",
-    body: "We are a Jaipur family business. When you visit, you will meet the family, not a sales floor.",
+    body: "We are a single shop in Porsa. When you visit, you meet the people behind the counter — not a sales floor.",
   },
 ];

@@ -61,7 +61,8 @@ export function organizationLd() {
     address: {
       "@type": "PostalAddress",
       streetAddress: siteConfig.address.line1,
-      addressLocality: siteConfig.address.city,
+      addressLocality: "Porsa",
+      addressRegion: "Madhya Pradesh",
       addressCountry: "IN",
     },
     openingHoursSpecification: [

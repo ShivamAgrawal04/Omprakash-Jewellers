@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button"
 export const metadata: Metadata = pageMetadata({
   title: "Custom Jewellery",
   description:
-    "Commission a one-of-a-kind piece at Om Prakash Jewellers — from a sketch, a photograph or an idea, made by hand in our Jaipur workshop.",
+    "Commission custom jewellery, repair, resize or polish at Omprakash Jewellers, Porsa — gold, silver and more.",
   path: "/custom-jewellery",
 })
 
@@ -40,7 +40,7 @@ export default function CustomJewelleryPage() {
       <PageHero
         eyebrow="Custom Jewellery"
         title="Designed around you"
-        description="One-of-a-kind pieces, made by hand in our own workshop — from a sketch, a photograph or an idea you have carried for years."
+        description="One-of-a-kind pieces, repairs and making from a sketch, a photograph or an old item you already own."
         image={unsplash(photo.flatlay, 1920, 1080)}
         imageAlt="Sketch, gold and tools at the custom jewellery workbench"
         crumbs={[{ label: "Home", href: "/" }, { label: "Custom Jewellery" }]}
@@ -72,8 +72,8 @@ export default function CustomJewelleryPage() {
               <Link href="/contact">
                 <Button>Start a Commission</Button>
               </Link>
-              <Link href="/craftsmanship">
-                <Button variant="outline">See the Craftsmanship</Button>
+              <Link href="/about">
+                <Button variant="outline">How we work</Button>
               </Link>
             </div>
           </div>

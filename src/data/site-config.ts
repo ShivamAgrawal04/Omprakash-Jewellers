@@ -1,3 +1,5 @@
+import site from "../../content/site.json";
+
 const getSiteUrl = (): string => {
   const envUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
   if (envUrl) {
@@ -13,33 +15,34 @@ const getSiteUrl = (): string => {
   return "http://localhost:3000";
 };
 
+const digits = (value: string) => value.replace(/[^\d]/g, "");
+
+const mapQuery = [
+  site.address.line1,
+  site.address.city,
+  site.address.country,
+].join(", ");
+
 export const siteConfig = {
-  name: "Om Prakash Jewellers",
-  shortName: "OPJ",
-  tagline: "Crafted to be remembered",
+  name: site.name,
+  shortName: site.shortName,
+  tagline: site.tagline,
+  heroTitle: site.heroTitle,
+  heroSubtitle: site.heroSubtitle,
+  heroImage: site.heroImage,
+  aboutTitle: site.aboutTitle,
+  aboutBody: site.aboutBody,
   url: getSiteUrl(),
-  phone: "+91 98765 43210",
-  phoneHref: "+919876543210",
-  whatsappNumber: process.env.WHATSAPP_NUMBER ?? "919876543210",
-  email: "hello@omprakashjewellers.com",
-  address: {
-    line1: "12, Heritage Market, MG Road",
-    line2: "Near City Railway Station",
-    city: "Jaipur, Rajasthan 302001",
-    country: "India",
-  },
-  hours: [
-    { days: "Monday – Saturday", time: "10:00 AM – 8:30 PM" },
-    { days: "Sunday", time: "11:00 AM – 7:00 PM" },
-  ],
-  socials: {
-    instagram: "https://instagram.com",
-    facebook: "https://facebook.com",
-  },
-  mapUrl:
-    "https://www.google.com/maps/search/?api=1&query=Jaipur+Rajasthan+India",
-  mapEmbed:
-    "https://maps.google.com/maps?q=Jaipur%2C%20Rajasthan&z=14&output=embed",
+  phone: site.phone,
+  phoneHref: `+${digits(site.phone)}`,
+  whatsappNumber: process.env.WHATSAPP_NUMBER ?? site.whatsappNumber,
+  email: site.email,
+  address: site.address,
+  hours: site.hours,
+  socials: site.socials,
+  mapUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapQuery)}`,
+  mapEmbed: `https://maps.google.com/maps?q=${encodeURIComponent(mapQuery)}&z=16&output=embed`,
 } as const;
 
 export type SiteConfig = typeof siteConfig;
+export type SiteContent = typeof site;

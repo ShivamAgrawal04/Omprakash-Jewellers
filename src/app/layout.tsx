@@ -43,24 +43,20 @@ const getMetadataBase = (): URL => {
 export const metadata: Metadata = {
   metadataBase: getMetadataBase(),
   title: {
-    default: `${siteConfig.name} — Timeless Gold & Diamond Jewellery`,
+    default: `${siteConfig.name} — Gold, silver & custom work in Porsa`,
     template: `%s — ${siteConfig.name}`,
   },
   description:
-    "Om Prakash Jewellers — handcrafted gold, diamond and bridal jewellery. Visit our showroom for 22K & 18K certified pieces, custom designs and jewellery care.",
+    "Omprakash Jewellers, Imli Chowk, Porsa — gold, silver, stones, custom making, repair and polish. Visit the shop or WhatsApp. We do not sell online.",
   applicationName: siteConfig.name,
   keywords: [
-    "gold jewellery",
-    "diamond jewellery",
-    "bridal jewellery",
-    "22k gold",
-    "18k gold",
-    "jewellery showroom",
+    "Omprakash Jewellers",
+    "Porsa jeweller",
+    "Imli Chowk",
+    "gold jewellery Porsa",
+    "silver jewellery",
     "custom jewellery",
-    "rings",
-    "necklaces",
-    "earrings",
-    "bangles",
+    "jewellery repair",
   ],
   alternates: {
     canonical: "/",
@@ -70,15 +66,15 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: `${siteConfig.name} — Timeless Gold & Diamond Jewellery`,
+    title: `${siteConfig.name} — Gold, silver & custom work in Porsa`,
     description:
-      "Handcrafted gold, diamond and bridal jewellery. Crafted to be remembered.",
+      "A single jewellery shop in Porsa. Visit or WhatsApp — we do not sell online.",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.name} — Timeless Gold & Diamond Jewellery`,
+    title: `${siteConfig.name} — Gold, silver & custom work in Porsa`,
     description:
-      "Handcrafted gold, diamond and bridal jewellery. Crafted to be remembered.",
+      "A single jewellery shop in Porsa. Visit or WhatsApp — we do not sell online.",
   },
   robots: {
     index: true,
@@ -97,6 +93,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
+      data-scroll-behavior="smooth"
       suppressHydrationWarning
       className={cn("h-full antialiased", manrope.variable, cormorant.variable)}
     >

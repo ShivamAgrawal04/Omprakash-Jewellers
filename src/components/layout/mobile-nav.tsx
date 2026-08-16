@@ -6,6 +6,7 @@ import { Dialog } from "@base-ui/react/dialog"
 import { Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionPanel } from "@/components/ui/accordion"
 import { mainNav } from "@/data/navigation"
 import { siteConfig } from "@/data/site-config"
+import { contactMessage, whatsappLink } from "@/lib/whatsapp"
 
 export function MobileNav({ open, onClose }: { open: boolean; onClose: () => void }) {
   return (
@@ -86,6 +87,14 @@ export function MobileNav({ open, onClose }: { open: boolean; onClose: () => voi
               >
                 <MapPin className="size-4 text-gold" aria-hidden />
                 {siteConfig.address.line1}, {siteConfig.address.city}
+              </a>
+              <a
+                href={whatsappLink(contactMessage())}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 inline-flex h-11 items-center justify-center rounded-md bg-gold px-5 font-sans text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-obsidian"
+              >
+                WhatsApp
               </a>
             </div>
           </div>

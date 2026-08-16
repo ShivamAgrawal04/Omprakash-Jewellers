@@ -1,0 +1,111 @@
+[
+  {
+    "slug": "gold-jewellery",
+    "name": "Gold Jewellery",
+    "tagline": "Warmth in twenty-two karats",
+    "description": "Handcrafted 22K and 18K gold jewellery — from everyday bands to statement heritage pieces. Each design is made in-house and hallmarked.",
+    "image": "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=1200&q=80&ixlib=rb-4.0.3&h=1500",
+    "imageAlt": "Selection of handcrafted gold jewellery from Om Prakash Jewellers",
+    "featured": true,
+    "sortOrder": 1,
+    "category": "pendants"
+  },
+  {
+    "slug": "silver-jewellery",
+    "name": "Silver Jewellery",
+    "tagline": "Everyday silver, made in the shop",
+    "description": "Sterling and silver jewellery — rings, chains, payal, utensils and custom silver work. Ask at the counter for making, polish and repair.",
+    "image": "https://images.unsplash.com/photo-1584302179602-e4c3d3fd629d?auto=format&fit=crop&w=1200&q=80&ixlib=rb-4.0.3&h=1500",
+    "imageAlt": "Silver jewellery from Omprakash Jewellers, Porsa",
+    "featured": true,
+    "sortOrder": 2,
+    "category": "bangles"
+  },
+  {
+    "slug": "diamond-jewellery",
+    "name": "Diamond Jewellery",
+    "tagline": "Light, cut to shine",
+    "description": "Natural, certified diamonds set with intention — solitaires, studs, pendants and pavé. Cut for brilliance and made to be worn daily.",
+    "image": "https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=1200&q=80&ixlib=rb-4.0.3&h=1500",
+    "imageAlt": "Natural diamond jewellery collection in white gold",
+    "featured": true,
+    "sortOrder": 3,
+    "category": "rings"
+  },
+  {
+    "slug": "bridal",
+    "name": "Bridal",
+    "tagline": "For the most beautiful day",
+    "description": "Wedding sets, polki collars, chokers and pearls — designed in consultation with our bridal specialists and made over weeks by hand.",
+    "image": "https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&w=1200&q=80&ixlib=rb-4.0.3&h=1500",
+    "imageAlt": "Bridal jewellery set with uncut diamonds and emeralds",
+    "featured": true,
+    "sortOrder": 4,
+    "category": "necklaces"
+  },
+  {
+    "slug": "rings",
+    "name": "Rings",
+    "tagline": "Signatures of the hand",
+    "description": "Solitaires, stacks, signets and heirloom rings — the pieces we wear daily and the ones we never take off.",
+    "image": "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1200&q=80&ixlib=rb-4.0.3&h=1500",
+    "imageAlt": "Gold and diamond rings from the rings collection",
+    "featured": false,
+    "sortOrder": 5,
+    "category": "rings"
+  },
+  {
+    "slug": "necklaces",
+    "name": "Necklaces",
+    "tagline": "Adorn the neckline",
+    "description": "Chains, pendants, strands and collars — from a whisper of gold to a full bridal statement.",
+    "image": "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1200&q=80&ixlib=rb-4.0.3&h=1500",
+    "imageAlt": "Necklaces from the necklaces collection",
+    "featured": false,
+    "sortOrder": 6,
+    "category": "necklaces"
+  },
+  {
+    "slug": "earrings",
+    "name": "Earrings",
+    "tagline": "Echoes of light",
+    "description": "Studs, drops, jhumkas and chandeliers — balanced by hand so they move beautifully and never pull.",
+    "image": "https://images.unsplash.com/photo-1611085583191-a3b181a88401?auto=format&fit=crop&w=1200&q=80&ixlib=rb-4.0.3&h=1500",
+    "imageAlt": "Earrings from the earrings collection",
+    "featured": false,
+    "sortOrder": 7,
+    "category": "earrings"
+  },
+  {
+    "slug": "bangles",
+    "name": "Bangles",
+    "tagline": "The poetry of the wrist",
+    "description": "Hammered, carved and diamond-set bangles — made rigid or flexible to suit how you live.",
+    "image": "https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&w=1200&q=80&ixlib=rb-4.0.3&h=1500",
+    "imageAlt": "Gold bangles from the bangles collection",
+    "featured": false,
+    "sortOrder": 8,
+    "category": "bangles"
+  },
+  {
+    "slug": "mens-jewellery",
+    "name": "Men's Jewellery",
+    "tagline": "Quiet confidence",
+    "description": "Kadas, signets, chains and cufflinks — substantial, honest pieces in 22K gold with a modern weight.",
+    "image": "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?auto=format&fit=crop&w=1200&q=80&ixlib=rb-4.0.3&h=1500",
+    "imageAlt": "Men's gold jewellery — kadas, signets and chains",
+    "featured": false,
+    "sortOrder": 9,
+    "category": "mens"
+  },
+  {
+    "slug": "custom-jewellery",
+    "name": "Custom Jewellery",
+    "tagline": "Designed around you",
+    "description": "From a sketch to a finished piece — our design studio works with you on one-of-a-kind commissions. Book a consultation.",
+    "image": "https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=1200&q=80&ixlib=rb-4.0.3&h=1500",
+    "imageAlt": "Custom jewellery design process flat lay",
+    "featured": false,
+    "sortOrder": 10
+  }
+]

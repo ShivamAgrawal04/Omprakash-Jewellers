@@ -16,8 +16,7 @@ export default function NotFound() {
         <div className="rounded-sm border border-border bg-pearl px-6 py-16 text-center">
           <p className="font-display text-6xl font-light text-primary">404</p>
           <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
-            Popular places to start — the full collection, this season&apos;s bridal edit, or call
-            the showroom directly at {siteConfig.phone}.
+            Popular places to start — the catalogue, or call the shop at {siteConfig.phone}.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Link href="/jewellery" className="inline-block">

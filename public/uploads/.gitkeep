@@ -1,0 +1,3 @@
+# Ignore uploaded binaries in git unless you want them committed via admin GitHub API
+# Keep the folder.
+!.gitkeep

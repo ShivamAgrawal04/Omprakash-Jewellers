@@ -2,7 +2,6 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import type { Product } from "@/data/types"
 import { formatINR } from "@/lib/format"
-import { categoryMap } from "@/data/collections"
 import { SmartImage } from "@/components/ui/smart-image"
 import { Badge } from "@/components/ui/badge"
 import { WishlistButton } from "@/components/products/wishlist-button"
@@ -68,8 +67,6 @@ export function ProductCard({ product, index = 0, priority = false }: ProductCar
 
       <div className="mt-4 flex flex-col gap-1">
         <p className="font-sans text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-          {categoryMap[product.category]?.name ?? product.category}
-          <span className="mx-1.5 text-primary">·</span>
           {product.metal}
         </p>
         <h3 className="font-display text-lg font-medium leading-snug text-foreground transition-colors group-hover:text-primary">

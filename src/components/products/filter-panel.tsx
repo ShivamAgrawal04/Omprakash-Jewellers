@@ -6,15 +6,18 @@ import {
   collectionOptions,
   metalOptions,
   purityOptions,
-  stoneOptions,
-  genderOptions,
-  availabilityOptions,
   PRICE_RANGES,
   toggleParam,
   buildQuery,
   hasActiveFilters,
 } from "@/lib/filter-url"
 import { cn } from "@/lib/utils"
+
+const shopCollections = collectionOptions.filter((c) =>
+  ["gold-jewellery", "silver-jewellery", "diamond-jewellery", "bridal", "custom-jewellery"].includes(
+    c.value,
+  ),
+)
 
 interface FilterGroupProps {
   title: string
@@ -26,9 +29,9 @@ interface FilterGroupProps {
 
 function FilterGroup({ title, options, current, param, pathname }: FilterGroupProps) {
   return (
-    <fieldset className="border-b border-border py-5 first:pt-0 last:border-0">
-      <legend className="eyebrow mb-3 text-muted-foreground">{title}</legend>
-      <ul className="space-y-1">
+    <div className="border-b border-border py-5 first:pt-0 last:border-0">
+      <h3 className="mb-3 text-sm font-medium text-foreground">{title}</h3>
+      <ul className="space-y-0.5">
         {options.map((option) => {
           const active = current[param] === option.value
           return (
@@ -37,14 +40,14 @@ function FilterGroup({ title, options, current, param, pathname }: FilterGroupPr
                 href={`${pathname}${toggleParam(current, param, option.value)}`}
                 aria-current={active ? "true" : undefined}
                 className={cn(
-                  "flex items-center gap-2.5 rounded-sm px-2 py-1.5 font-sans text-[0.8rem] text-foreground/75 transition-colors hover:text-primary",
-                  active && "font-semibold text-primary",
+                  "flex items-center gap-2.5 rounded-sm py-1.5 text-sm text-muted-foreground transition-colors hover:text-primary",
+                  active && "font-medium text-primary",
                 )}
               >
                 <span
                   aria-hidden
                   className={cn(
-                    "size-3.5 rounded-full border border-border transition-colors",
+                    "size-3.5 shrink-0 rounded-full border border-border",
                     active && "border-primary bg-primary",
                   )}
                 />
@@ -54,7 +57,7 @@ function FilterGroup({ title, options, current, param, pathname }: FilterGroupPr
           )
         })}
       </ul>
-    </fieldset>
+    </div>
   )
 }
 
@@ -72,7 +75,7 @@ export function FilterPanel({ current, pathname, className }: FilterPanelProps) 
         {hasActiveFilters(current) ? (
           <Link
             href={pathname}
-            className="inline-flex items-center gap-1.5 font-sans text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground transition-colors hover:text-primary"
+            className="inline-flex items-center gap-1.5 text-xs font-medium uppercase tracking-wide text-muted-foreground transition-colors hover:text-primary"
           >
             <RotateCcw className="size-3.5" aria-hidden />
             Reset
@@ -80,7 +83,7 @@ export function FilterPanel({ current, pathname, className }: FilterPanelProps) 
         ) : null}
       </div>
 
-      <div className="mt-5">
+      <div className="mt-4">
         <FilterGroup
           title="Category"
           options={categoryOptions}
@@ -90,7 +93,7 @@ export function FilterPanel({ current, pathname, className }: FilterPanelProps) 
         />
         <FilterGroup
           title="Collection"
-          options={collectionOptions}
+          options={shopCollections}
           current={current}
           param="collection"
           pathname={pathname}
@@ -109,31 +112,10 @@ export function FilterPanel({ current, pathname, className }: FilterPanelProps) 
           param="purity"
           pathname={pathname}
         />
-        <FilterGroup
-          title="Stone"
-          options={stoneOptions.map((s) => ({ value: s, label: s }))}
-          current={current}
-          param="stone"
-          pathname={pathname}
-        />
-        <FilterGroup
-          title="Gender"
-          options={genderOptions}
-          current={current}
-          param="gender"
-          pathname={pathname}
-        />
-        <FilterGroup
-          title="Availability"
-          options={availabilityOptions}
-          current={current}
-          param="availability"
-          pathname={pathname}
-        />
 
-        <fieldset className="border-b border-border py-5">
-          <legend className="eyebrow mb-3 text-muted-foreground">Price Range</legend>
-          <ul className="space-y-1">
+        <div className="border-b border-border py-5 last:border-0">
+          <h3 className="mb-3 text-sm font-medium text-foreground">Price</h3>
+          <ul className="space-y-0.5">
             {PRICE_RANGES.map((range) => {
               const active =
                 current.priceMin === range.min && current.priceMax === range.max
@@ -147,14 +129,14 @@ export function FilterPanel({ current, pathname, className }: FilterPanelProps) 
                     })}`}
                     aria-current={active ? "true" : undefined}
                     className={cn(
-                      "flex items-center gap-2.5 rounded-sm px-2 py-1.5 font-sans text-[0.8rem] text-foreground/75 transition-colors hover:text-primary",
-                      active && "font-semibold text-primary",
+                      "flex items-center gap-2.5 rounded-sm py-1.5 text-sm text-muted-foreground transition-colors hover:text-primary",
+                      active && "font-medium text-primary",
                     )}
                   >
                     <span
                       aria-hidden
                       className={cn(
-                        "size-3.5 rounded-full border border-border transition-colors",
+                        "size-3.5 shrink-0 rounded-full border border-border",
                         active && "border-primary bg-primary",
                       )}
                     />
@@ -164,7 +146,7 @@ export function FilterPanel({ current, pathname, className }: FilterPanelProps) 
               )
             })}
           </ul>
-        </fieldset>
+        </div>
       </div>
     </aside>
   )

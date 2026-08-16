@@ -8,81 +8,73 @@ interface ThemeContextValue {
   theme: Theme
   resolvedTheme: "light" | "dark"
   setTheme: (theme: Theme) => void
+  toggleTheme: () => void
 }
 
 const ThemeContext = createContext<ThemeContextValue | null>(null)
 
 const STORAGE_KEY = "opj-theme"
 
-function applyTheme(theme: Theme) {
-  const root = document.documentElement
-  const resolved =
-    theme === "system"
-      ? window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light"
-      : theme
-  root.classList.toggle("dark", resolved === "dark")
-  root.style.colorScheme = resolved
+function resolve(theme: Theme): "light" | "dark" {
+  if (theme === "dark") return "dark"
+  if (theme === "light") return "light"
+  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
 }
 
-function getInitialTheme(): Theme {
-  if (typeof window === "undefined") return "system"
-  const stored = window.localStorage.getItem(STORAGE_KEY)
-  if (stored === "light" || stored === "dark" || stored === "system") return stored
+function applyTheme(theme: Theme) {
+  const resolved = resolve(theme)
+  const root = document.documentElement
+  root.classList.toggle("dark", resolved === "dark")
+  root.style.colorScheme = resolved
+  return resolved
+}
+
+function readStoredTheme(): Theme {
+  try {
+    const stored = window.localStorage.getItem(STORAGE_KEY)
+    if (stored === "light" || stored === "dark" || stored === "system") return stored
+  } catch {
+    // ignore
+  }
   return "system"
 }
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setThemeState] = useState<Theme>("system")
   const [resolvedTheme, setResolvedTheme] = useState<"light" | "dark">("light")
-  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    const id = requestAnimationFrame(() => {
-      const initial = getInitialTheme()
-      setThemeState(initial)
-      applyTheme(initial)
-      setResolvedTheme(
-        initial === "system"
-          ? window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "light"
-          : initial,
-      )
-      setMounted(true)
-    })
-    return () => cancelAnimationFrame(id)
+    const initial = readStoredTheme()
+    setThemeState(initial)
+    setResolvedTheme(applyTheme(initial))
   }, [])
 
   useEffect(() => {
-    if (!mounted) return
     const media = window.matchMedia("(prefers-color-scheme: dark)")
     const handler = () => {
-      if (theme === "system") {
-        applyTheme("system")
-        setResolvedTheme(media.matches ? "dark" : "light")
-      }
+      if (theme === "system") setResolvedTheme(applyTheme("system"))
     }
     media.addEventListener("change", handler)
     return () => media.removeEventListener("change", handler)
-  }, [theme, mounted])
+  }, [theme])
 
   const setTheme = (next: Theme) => {
     setThemeState(next)
-    applyTheme(next)
-    window.localStorage.setItem(STORAGE_KEY, next)
-    setResolvedTheme(
-      next === "system"
-        ? window.matchMedia("(prefers-color-scheme: dark)").matches
-          ? "dark"
-          : "light"
-        : next,
-    )
+    try {
+      window.localStorage.setItem(STORAGE_KEY, next)
+    } catch {
+      // ignore
+    }
+    setResolvedTheme(applyTheme(next))
+  }
+
+  const toggleTheme = () => {
+    const isDark = document.documentElement.classList.contains("dark")
+    setTheme(isDark ? "light" : "dark")
   }
 
   return (
-    <ThemeContext.Provider value={{ theme, resolvedTheme, setTheme }}>
+    <ThemeContext.Provider value={{ theme, resolvedTheme, setTheme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   )

@@ -9,17 +9,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     "",
     "/jewellery",
-    "/new-arrivals",
-    "/bridal",
     "/collections",
     "/custom-jewellery",
     "/gallery",
-    "/craftsmanship",
-    "/story",
     "/about",
-    "/care",
-    "/offers",
-    "/visit",
     "/contact",
     "/wishlist",
     "/search",
@@ -30,10 +23,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const routes: MetadataRoute.Sitemap = staticRoutes.map((route) => ({
     url: `${base}${route}`,
     lastModified: new Date(),
-    changeFrequency: route === "" || route === "/jewellery" || route === "/new-arrivals"
-      ? ("daily" as const)
-      : ("weekly" as const),
-    priority: route === "" ? 1 : route === "/jewellery" || route === "/bridal" ? 0.9 : 0.6,
+    changeFrequency: route === "" || route === "/jewellery" ? ("weekly" as const) : ("monthly" as const),
+    priority: route === "" ? 1 : route === "/jewellery" ? 0.9 : 0.6,
   }))
 
   const collectionRoutes: MetadataRoute.Sitemap = collections.map((collection) => ({

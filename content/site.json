@@ -1,0 +1,27 @@
+{
+  "name": "Omprakash Jewellers",
+  "shortName": "OPJ",
+  "tagline": "Gold, silver and work made by hand",
+  "heroTitle": "Jewellery and craft from our shop in Porsa.",
+  "heroSubtitle": "Gold, silver, stones, custom making, repair and polishing — visit the shop at Imli Chowk, Keshav Pasari ke saamne, or message us on WhatsApp. We do not sell online.",
+  "heroImage": "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1920&q=80&ixlib=rb-4.0.3",
+  "phone": "+91 93405 44265",
+  "whatsappNumber": "919340544265",
+  "email": "hello@omprakashjewellers.com",
+  "address": {
+    "line1": "Imli Chowk, Keshav Pasari ke saamne",
+    "line2": "Porsa",
+    "city": "Porsa, Madhya Pradesh",
+    "country": "India"
+  },
+  "hours": [
+    { "days": "Monday – Saturday", "time": "10:00 AM – 8:30 PM" },
+    { "days": "Sunday", "time": "11:00 AM – 7:00 PM" }
+  ],
+  "socials": {
+    "instagram": "https://instagram.com",
+    "facebook": "https://facebook.com"
+  },
+  "aboutTitle": "A neighbourhood jeweller that also makes and mends",
+  "aboutBody": "Omprakash Jewellers is a single shop in Porsa. We sell gold and silver jewellery, and we also craft, resize, repair, polish and make pieces to order — not only gold and silver. Come to the counter, see the work, and talk to us in person."
+}

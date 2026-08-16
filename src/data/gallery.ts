@@ -6,7 +6,7 @@ const img = unsplash;
 export const gallerySections: { slug: GallerySection; name: string; blurb: string }[] = [
   { slug: "bridal", name: "Bridal", blurb: "The wedding-day pieces, photographed in the workshop" },
   { slug: "craftsmanship", name: "Craftsmanship", blurb: "Inside the hands that shape the metal" },
-  { slug: "store", name: "Store", blurb: "A look around our Jaipur showroom" },
+  { slug: "store", name: "Store", blurb: "A look around our shop in Porsa" },
   { slug: "collections", name: "Collections", blurb: "Recent arrivals and signature lines" },
   { slug: "behind-the-scenes", name: "Behind the Scenes", blurb: "From sketch to finished piece" },
   { slug: "events", name: "Events", blurb: "Festival previews and private viewings" },

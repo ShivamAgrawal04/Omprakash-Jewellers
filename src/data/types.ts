@@ -11,7 +11,9 @@ export type Metal =
   | "18K Yellow Gold"
   | "18K White Gold"
   | "18K Rose Gold"
-  | "Platinum";
+  | "Platinum"
+  | "Silver"
+  | "Sterling Silver (925)";
 
 export type Stone =
   | "Natural Diamond"

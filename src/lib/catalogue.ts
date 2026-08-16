@@ -13,7 +13,12 @@ export interface SearchFilters {
   priceMax?: number | string;
 }
 
-export type SortKey = "featured" | "newest" | "price-asc" | "price-desc" | "name";
+export type SortKey =
+  | "featured"
+  | "newest"
+  | "price-asc"
+  | "price-desc"
+  | "name";
 
 export const SORT_OPTIONS: { value: SortKey; label: string }[] = [
   { value: "featured", label: "Featured" },
@@ -29,6 +34,8 @@ const METALS = [
   "18K White Gold",
   "18K Rose Gold",
   "Platinum",
+  "Silver",
+  "Sterling Silver (925)",
 ] as const;
 
 const STONES = [
@@ -43,30 +50,46 @@ const STONES = [
 export const FILTER_OPTIONS = {
   metals: METALS as readonly string[],
   stones: STONES as readonly string[],
-  purity: ["22K (916)", "18K (750)", "Pt 950"] as const,
+  purity: ["22K (916)", "18K (750)", "Pt 950", "925"] as const,
 };
 
 export function norm(value: string): string {
   return value.trim().toLowerCase();
 }
 
-export function applyFilters(products: Product[], filters: SearchFilters): Product[] {
-  const pMin = typeof filters.priceMin === "string" ? parseFloat(filters.priceMin) : filters.priceMin;
-  const pMax = typeof filters.priceMax === "string" ? parseFloat(filters.priceMax) : filters.priceMax;
-  const hasPriceRange = typeof pMin === "number" && !isNaN(pMin) || typeof pMax === "number" && !isNaN(pMax);
+export function applyFilters(
+  products: Product[],
+  filters: SearchFilters,
+): Product[] {
+  const pMin =
+    typeof filters.priceMin === "string"
+      ? parseFloat(filters.priceMin)
+      : filters.priceMin;
+  const pMax =
+    typeof filters.priceMax === "string"
+      ? parseFloat(filters.priceMax)
+      : filters.priceMax;
+  const hasPriceRange =
+    (typeof pMin === "number" && !isNaN(pMin)) ||
+    (typeof pMax === "number" && !isNaN(pMax));
 
   return products.filter((p) => {
     if (filters.category && p.category !== filters.category) return false;
-    if (filters.collection && p.collectionSlug !== filters.collection) return false;
+    if (filters.collection && p.collectionSlug !== filters.collection)
+      return false;
     if (filters.metal && norm(p.metal) !== norm(filters.metal)) return false;
     if (filters.purity && norm(p.purity) !== norm(filters.purity)) return false;
-    if (filters.stone && norm(p.stone ?? "None") !== norm(filters.stone)) return false;
+    if (filters.stone && norm(p.stone ?? "None") !== norm(filters.stone))
+      return false;
     if (filters.gender && p.gender !== filters.gender) return false;
-    if (filters.availability && p.availability !== filters.availability) return false;
+    if (filters.availability && p.availability !== filters.availability)
+      return false;
     if (hasPriceRange) {
       if (typeof p.price !== "number") return false;
-      if (typeof pMin === "number" && !isNaN(pMin) && p.price < pMin) return false;
-      if (typeof pMax === "number" && !isNaN(pMax) && p.price > pMax) return false;
+      if (typeof pMin === "number" && !isNaN(pMin) && p.price < pMin)
+        return false;
+      if (typeof pMax === "number" && !isNaN(pMax) && p.price > pMax)
+        return false;
     }
     return true;
   });

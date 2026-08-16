@@ -18,7 +18,7 @@ import Link from "next/link"
 export const metadata: Metadata = pageMetadata({
   title: "All Jewellery",
   description:
-    "Browse the full Om Prakash Jewellers collection — gold, diamond, bridal and men's jewellery, handcrafted and hallmarked in Jaipur.",
+    "Browse gold, silver, diamond and custom jewellery from Omprakash Jewellers, Porsa. Enquire in the shop or on WhatsApp — we do not sell online.",
   path: "/jewellery",
 })
 
@@ -40,8 +40,8 @@ export default async function JewelleryPage({
     <>
       <PageHero
         eyebrow="The Catalogue"
-        title="All Jewellery"
-        description="Every piece currently at the bench and in the showroom — hallmarked, certified and made by hand."
+        title="Catalogue"
+        description="Pieces you can ask about at the shop. Weight, making and stone rates are confirmed in person or on WhatsApp."
         crumbs={[{ label: "Home", href: "/" }, { label: "Jewellery" }]}
       />
 

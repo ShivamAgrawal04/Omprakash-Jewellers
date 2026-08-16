@@ -16,13 +16,17 @@ export function CollectionCard({ collection, large }: CollectionCardProps) {
       className={`group block focus-visible:outline-2 focus-visible:outline-ring ${large ? "lg:h-full" : ""}`}
       aria-label={`Explore ${collection.name}`}
     >
-      <div className={`relative overflow-hidden rounded-sm bg-muted ${large ? "lg:h-full" : ""}`}>
+      <div
+        className="relative overflow-hidden rounded-sm bg-muted"
+        style={{ position: "relative" }}
+      >
         <div
           className={
             large
-              ? "aspect-[4/3] sm:aspect-[16/10] lg:aspect-auto lg:h-full"
-              : "aspect-[4/5]"
+              ? "relative aspect-[4/3] w-full sm:aspect-[16/10] lg:aspect-auto lg:h-full"
+              : "relative aspect-[4/3] w-full"
           }
+          style={{ position: "relative" }}
         >
           <SmartImage
             src={collection.image}
@@ -51,7 +55,7 @@ export function CollectionCard({ collection, large }: CollectionCardProps) {
 export function CollectionCardSkeleton({ large }: { large?: boolean }) {
   return (
     <div className="block">
-      <div className={large ? "aspect-[16/10] rounded-sm" : "aspect-[4/5] rounded-sm"}>
+      <div className={large ? "aspect-[16/10] rounded-sm" : "aspect-[4/3] rounded-sm"}>
         <Skeleton className="h-full w-full" />
       </div>
     </div>

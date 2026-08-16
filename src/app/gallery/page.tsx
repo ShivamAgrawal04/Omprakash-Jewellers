@@ -7,7 +7,7 @@ import { GallerySectionFilter } from "@/components/gallery/gallery-section-filte
 export const metadata: Metadata = pageMetadata({
   title: "Gallery",
   description:
-    "Inside Om Prakash Jewellers — bridal pieces, craftsmanship at the bench and the Jaipur showroom, in our own photographs.",
+    "Photos from Omprakash Jewellers in Porsa — jewellery, making and the shop.",
   path: "/gallery",
 })
 
@@ -16,8 +16,8 @@ export default function GalleryPage() {
     <>
       <PageHero
         eyebrow="Gallery"
-        title="Inside the house"
-        description="Bridal pieces, the bench and the showroom — photographed the way the work actually happens."
+        title="From the shop"
+        description="Jewellery, making and the counter in Porsa."
         crumbs={[{ label: "Home", href: "/" }, { label: "Gallery" }]}
       />
       <section className="container-lux py-10 md:py-16">

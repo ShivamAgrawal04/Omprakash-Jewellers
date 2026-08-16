@@ -12,44 +12,40 @@ import { useTheme } from "@/components/providers/theme-provider"
 import { Button } from "@/components/ui/button"
 import { MobileNav } from "@/components/layout/mobile-nav"
 
-function ThemeToggle({ className }: { className?: string }) {
-  const { resolvedTheme, setTheme } = useTheme()
+function ThemeToggle({ className, lightOnDark }: { className?: string; lightOnDark?: boolean }) {
+  const { resolvedTheme, toggleTheme } = useTheme()
   const mounted = useSyncExternalStore(
     () => () => {},
     () => true,
     () => false,
   )
 
-  const toggle = () => setTheme(resolvedTheme === "dark" ? "light" : "dark")
+  const isDark = mounted && resolvedTheme === "dark"
 
   return (
     <button
       type="button"
-      onClick={toggle}
-      aria-label={
-        mounted && resolvedTheme === "dark" ? "Switch to light mode" : "Switch to dark mode"
-      }
+      onClick={toggleTheme}
+      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       className={cn(
-        "flex size-10 items-center justify-center rounded-full transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-ring",
+        "relative z-50 flex size-10 items-center justify-center rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-ring",
+        lightOnDark ? "hover:bg-white/10" : "hover:bg-muted",
         className,
       )}
     >
-      {mounted && resolvedTheme === "dark" ? (
-        <Sun className="size-[18px]" />
-      ) : (
-        <Moon className="size-[18px]" />
-      )}
+      {isDark ? <Sun className="size-[18px]" /> : <Moon className="size-[18px]" />}
     </button>
   )
 }
 
-function SearchLink({ className }: { className?: string }) {
+function SearchLink({ className, lightOnDark }: { className?: string; lightOnDark?: boolean }) {
   return (
     <Link
       href="/search"
       aria-label="Search jewellery"
       className={cn(
-        "flex size-10 items-center justify-center rounded-full transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-ring",
+        "flex size-10 items-center justify-center rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-ring",
+        lightOnDark ? "hover:bg-white/10" : "hover:bg-muted",
         className,
       )}
     >
@@ -58,7 +54,7 @@ function SearchLink({ className }: { className?: string }) {
   )
 }
 
-function WishlistLink({ className }: { className?: string }) {
+function WishlistLink({ className, lightOnDark }: { className?: string; lightOnDark?: boolean }) {
   const { count } = useWishlist()
   const mounted = useSyncExternalStore(
     () => () => {},
@@ -71,7 +67,8 @@ function WishlistLink({ className }: { className?: string }) {
       href="/wishlist"
       aria-label={`Wishlist${mounted && count ? `, ${count} pieces` : ""}`}
       className={cn(
-        "relative flex size-10 items-center justify-center rounded-full transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-ring",
+        "relative flex size-10 items-center justify-center rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-ring",
+        lightOnDark ? "hover:bg-white/10" : "hover:bg-muted",
         className,
       )}
     >
@@ -89,7 +86,6 @@ export function SiteHeader() {
   const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
-
   const overlay = pathname === "/" && !scrolled
 
   useEffect(() => {
@@ -105,6 +101,8 @@ export function SiteHeader() {
     setMobileOpen(false)
   }
 
+  if (pathname.startsWith("/admin")) return null
+
   return (
     <header
       className={cn(
@@ -114,23 +112,23 @@ export function SiteHeader() {
           : "border-b border-border bg-background/90 text-foreground backdrop-blur-md supports-[backdrop-filter]:bg-background/75",
       )}
     >
-      <div className="container-lux flex h-16 items-center justify-between gap-4 md:h-20">
+      <div className="container-lux flex h-16 items-center justify-between gap-3 md:h-20">
         <Link
           href="/"
-          className="flex items-center gap-2.5 focus-visible:outline-2 focus-visible:outline-ring"
+          className="flex min-w-0 items-center gap-2 focus-visible:outline-2 focus-visible:outline-ring"
           aria-label={`${siteConfig.name} — home`}
         >
-          <Gem className="size-5 text-gold" aria-hidden />
-          <span className="font-display text-lg font-semibold tracking-wide whitespace-nowrap">
-            Om Prakash
-            <span className="ml-2 hidden text-[0.55rem] font-sans font-semibold uppercase tracking-[0.28em] text-gold sm:inline">
+          <Gem className="size-5 shrink-0 text-gold" aria-hidden />
+          <span className="truncate font-display text-lg font-semibold tracking-wide">
+            Omprakash
+            <span className="ml-2 hidden font-sans text-[0.55rem] font-semibold uppercase tracking-[0.28em] text-gold sm:inline">
               Jewellers
             </span>
           </span>
         </Link>
 
-        <nav aria-label="Primary" className="hidden lg:block">
-          <ul className="flex items-center gap-7">
+        <nav aria-label="Primary" className="hidden min-w-0 lg:block">
+          <ul className="flex items-center gap-5 xl:gap-7">
             {mainNav.map((item) => (
               <li key={item.label} className="group relative">
                 <Link
@@ -144,7 +142,7 @@ export function SiteHeader() {
                 </Link>
                 {item.children ? (
                   <div className="invisible absolute left-1/2 top-full z-50 -translate-x-1/2 translate-y-2 pt-3 opacity-0 transition-all duration-300 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
-                    <div className="w-56 rounded-md border border-border bg-background p-2 text-foreground shadow-xl shadow-obsidian/10">
+                    <div className="w-52 rounded-md border border-border bg-background p-2 text-foreground shadow-xl shadow-obsidian/10">
                       {item.children.map((child) => (
                         <Link
                           key={child.label}
@@ -162,29 +160,20 @@ export function SiteHeader() {
           </ul>
         </nav>
 
-        <div className="flex items-center gap-1 md:gap-2">
-          <ThemeToggle />
-          <SearchLink />
-          <WishlistLink />
+        <div className="flex shrink-0 items-center gap-0.5 md:gap-1">
+          <ThemeToggle lightOnDark={overlay} />
+          <SearchLink lightOnDark={overlay} />
+          <WishlistLink lightOnDark={overlay} />
           <Link
             href="/contact"
-            className="hidden xl:inline-flex"
-            aria-label="Contact or enquire"
+            className="hidden sm:inline-flex h-9 items-center rounded-md bg-gold px-4 font-sans text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-obsidian transition-colors hover:bg-champagne"
           >
-            <Button
-              variant={overlay ? "outline" : "default"}
-              size="sm"
-              className={cn(
-                overlay && "border-white/40 text-white hover:border-gold hover:text-gold",
-              )}
-            >
-              Contact
-            </Button>
+            Contact
           </Link>
           <Button
             variant="ghost"
             size="icon"
-            className="lg:hidden"
+            className={cn("lg:hidden", overlay && "text-white hover:bg-white/10")}
             aria-label="Open menu"
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen(true)}
